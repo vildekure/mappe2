@@ -2,20 +2,20 @@ package com.example.mappe2s354592.Models;
 
 public class Contact {
     public long _ID;
-    public String navn;
+    public String name;
     public String tlf;
 
     public Contact () {
     }
 
-    public Contact(String navn, String tlf) {
-        this.navn = navn;
+    public Contact(String name, String tlf) {
+        this.name = name;
         this.tlf = tlf;
     }
 
-    public Contact(long _ID, String navn, String tlf) {
+    public Contact(long _ID, String name, String tlf) {
         this._ID = _ID;
-        this.navn = navn;
+        this.name = name;
         this.tlf = tlf;
     }
 
@@ -27,12 +27,12 @@ public class Contact {
         this._ID = _ID;
     }
 
-    public String getNavn() {
-        return navn;
+    public String getName() {
+        return name;
     }
 
-    public void setNavn(String navn) {
-        this.navn = navn;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTlf() {
