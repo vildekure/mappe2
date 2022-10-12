@@ -8,63 +8,70 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin"
         tools:ignore="MissingConstraints">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/white"
             android:src="@drawable/ic_baseline_arrow_back_24">
         </ImageButton>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/name">
-        </TextView>
-
-        <EditText
-            android:id="@+id/inn_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </EditText>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tlf">
-        </TextView>
-
-        <EditText
-            android:id="@+id/inn_tlf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </EditText>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="20dp">
-            <Button
-                android:id="@+id/buttonEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:text="@string/edit">
-            </Button>
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin"
+            tools:ignore="MissingConstraints">
 
-            <Button
-                android:id="@+id/button_delete"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/del"
-                android:backgroundTint="@color/red">
-            </Button>
+                android:text="@string/name">
+            </TextView>
+
+            <EditText
+                android:id="@+id/inn_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tlf">
+            </TextView>
+
+            <EditText
+                android:id="@+id/inn_tlf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/edit">
+                </Button>
+
+                <Button
+                    android:id="@+id/button_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/red"
+                    android:text="@string/del">
+                </Button>
+            </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
