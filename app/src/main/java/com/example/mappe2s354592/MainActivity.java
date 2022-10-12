@@ -36,9 +36,4 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
     }
-
-    /*public void addContactButton (View v) {
-        Intent addContact = new Intent(this, AddContact.class);
-        startActivity(addContact);
-    } */
 }
