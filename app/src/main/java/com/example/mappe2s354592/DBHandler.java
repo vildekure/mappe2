@@ -1,11 +1,14 @@
 package com.example.mappe2s354592;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import com.example.mappe2s354592.Models.Contact;
 
 public class DBHandler extends SQLiteOpenHelper {
     static String TABLE_CONTACTS = "Contacts";
@@ -46,4 +49,20 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
+    public void addContact(SQLiteDatabase db, Contact contact) {
+        ContentValues values = new ContentValues();
+        values.put(CONTACT_KEY_ID, contact.get_ID());
+        values.put(CONTACT_KEY_NAME, contact.getName());
+        values.put(CONTACT_PH_NO, contact.getTlf());
+        db.insert(TABLE_CONTACTS, null, values);
+    }
+
+    public void deleteContact(SQLiteDatabase db, long id) {
+        db.delete(TABLE_CONTACTS, CONTACT_KEY_ID + " =? ",
+                new String[]{Long.toString(id)});
+    }
+
+
+
 }
