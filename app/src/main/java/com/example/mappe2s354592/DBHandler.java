@@ -2,13 +2,19 @@ package com.example.mappe2s354592;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.graphics.drawable.IconCompat;
 
+import com.example.mappe2s354592.Models.Appointment;
 import com.example.mappe2s354592.Models.Contact;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
     static String TABLE_CONTACTS = "Contacts";
@@ -58,11 +64,50 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_CONTACTS, null, values);
     }
 
-    public void deleteContact(SQLiteDatabase db, long id) {
+    public List<Contact> getAllContacts(SQLiteDatabase db) {
+        List<Contact> contactList = new ArrayList<Contact>();
+        String selectQuery = "SELECT * FROM " + TABLE_CONTACTS;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Contact contact = new Contact();
+                contact.set_ID(cursor.getLong(0));
+                contact.setName(cursor.getString(1));
+                contact.setTlf(cursor.getString(2));
+                contactList.add(contact);
+            }
+            while (cursor.moveToNext());
+            cursor.close();
+        }
+        return contactList;
+    }
+
+    public int editContact(SQLiteDatabase db, Contact contact) {
+        ContentValues values = new ContentValues();
+        values.put(CONTACT_KEY_NAME, contact.getName());
+        values.put(CONTACT_PH_NO, contact.getTlf());
+        int changed = db.update(TABLE_CONTACTS, values, CONTACT_KEY_ID + " =? ",
+                new String[]{String.valueOf(contact.get_ID())});
+        return changed;
+    }
+
+    public void deleteContact(SQLiteDatabase db, Long id) {
         db.delete(TABLE_CONTACTS, CONTACT_KEY_ID + " =? ",
                 new String[]{Long.toString(id)});
     }
 
+    public void addAppointment(SQLiteDatabase db, Appointment appointment) {
+        ContentValues values = new ContentValues();
+        values.put(APPOINTMENT_KEY_ID, appointment.get_ID());
+        values.put(APPOINTMENT_KEY_DATE, appointment.getDate());
+        values.put(APPOINTMENT_KEY_TIME, appointment.getTime());
+        values.put(APPOINTMENT_KEY_LOCATION, appointment.getLocation());
+        db.insert(TABLE_APPOINTMENTS, null, values);
+    }
 
+    public void deleteAppointment(SQLiteDatabase db, Long id) {
+        db.delete(TABLE_APPOINTMENTS, APPOINTMENT_KEY_ID + " =? ",
+                new String[]{Long.toString(id)});
+    }
 
 }
