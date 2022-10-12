@@ -5,6 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="add">Legg til</string>
     <string name="del">Slett</string>
+    <string name="edit">Endre</string>
     <string name="name">Navn</string>
     <string name="tlf">Telefonnummer</string>
 </resources>
