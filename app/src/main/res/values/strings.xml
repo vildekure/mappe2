@@ -11,4 +11,5 @@
     <string name="date">Dato</string>
     <string name="time">Klokkeslett</string>
     <string name="mssg">Melding</string>
+    <string name="loc">Sted</string>
 </resources>
