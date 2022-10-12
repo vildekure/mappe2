@@ -14,9 +14,6 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class AddContact extends Activity {
     ImageButton backButton;
-    TextInputEditText innName, innTlf;
-    DBHandler dbHelper;
-    SQLiteDatabase db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,10 +21,6 @@ public class AddContact extends Activity {
         setContentView(R.layout.activity_addcontact);
 
         backButton = findViewById(R.id.back_button);
-        innName = findViewById(R.id.name_text_field);
-        innTlf =findViewById(R.id.tlf_text_field);
-        dbHelper = new DBHandler(this);
-        db = dbHelper.getWritableDatabase();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,10 +30,6 @@ public class AddContact extends Activity {
         });
     }
 
-    public void addContact(View v) {
-        Contact contact = new Contact(innName.getText().toString(), innTlf.getText().toString());
-        dbHelper.addContact(db, contact);
-    }
 
 
 }
