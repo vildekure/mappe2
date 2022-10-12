@@ -28,6 +28,8 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
+
         addContact = binding.addContact;
 
         addContact.setOnClickListener(new View.OnClickListener() {
