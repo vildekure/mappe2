@@ -60,6 +60,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
+    // Kontakter herfra
+
     public void addContact(SQLiteDatabase db, Contact contact) {
         ContentValues values = new ContentValues();
         values.put(CONTACT_KEY_NAME, contact.getName());
@@ -99,6 +101,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 new String[]{Long.toString(id)});
     }
 
+    // Avtaler herfra
+
     public void addAppointment(SQLiteDatabase db, Appointment appointment) {
         ContentValues values = new ContentValues();
         values.put(APPOINTMENT_KEY_DATE, appointment.getDate());
@@ -130,6 +134,17 @@ public class DBHandler extends SQLiteOpenHelper {
         return appointmentsList;
     }
 
+    public int editAppointment (SQLiteDatabase db, Appointment appointment){
+        ContentValues values = new ContentValues();
+        values.put(APPOINTMENT_KEY_DATE, appointment.getDate());
+        values.put(APPOINTMENT_KEY_TIME, appointment.getTime());
+        values.put(APPOINTMENT_KEY_LOCATION, appointment.getLocation());
+        values.put(APPOINTMENT_KEY_MESSAGE, appointment.getMessage());
+        values.put(APPOINTMENT_KEY_CONTACT_ID, appointment.getContactId());
+        int endret = db.update(TABLE_APPOINTMENTS, values, APPOINTMENT_KEY_ID + " =? ", new String[]{String.valueOf(appointment.get_ID())});
+
+        return endret;
+    }
 
     public void deleteAppointment(SQLiteDatabase db, Long id) {
         db.delete(TABLE_APPOINTMENTS, APPOINTMENT_KEY_ID + " =? ",
