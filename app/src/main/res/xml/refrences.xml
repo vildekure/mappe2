@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        app:key="Notifikasjoner"
+        app:title="Tillat notifikasjoner" />
+    <EditTextPreference
+        app:key="melding"
+        app:summary="Standardmelding"
+        app:title="Melding" />
+</PreferenceScreen>

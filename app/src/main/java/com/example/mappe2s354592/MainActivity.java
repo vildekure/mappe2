@@ -86,4 +86,9 @@ public class MainActivity extends AppCompatActivity {
     public AdapterAppointment getAppointmentAdapter() {
         return appointmentAdapter;
     }
+
+    public void visPreferences(View v){
+        Intent intent = new Intent(this,SetPreferencesActivity.class);
+        startActivity(intent);
+    }
 }
