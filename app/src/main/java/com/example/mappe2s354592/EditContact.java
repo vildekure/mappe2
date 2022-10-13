@@ -44,11 +44,13 @@ public class EditContact extends Activity {
         contact.setName(innName.getText().toString());
         contact.setTlf(innTlf.getText().toString());
         dbHelper.editContact(db, contact);
+        finish();
     }
 
     public void deleteContact (View v) {
         Contact contact = new Contact();
         long contactId = contact.get_ID();
         dbHelper.deleteContact(db, contactId);
+        finish();
     }
 }

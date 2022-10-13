@@ -61,11 +61,13 @@ public class EditAppointment extends Activity {
         appointment.setLocation(innLoc.getText().toString());
         appointment.setMessage(innMssg.getText().toString());
         dbHelper.editAppointment(db, appointment);
+        finish();
     }
 
     public void deleteContact (View v) {
         Appointment appointment = new Appointment();
         long appointId = appointment.get_ID();
         dbHelper.deleteAppointment(db, appointId);
+        finish();
     }
 }
