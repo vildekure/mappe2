@@ -36,7 +36,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    String CHANNEL_ID = "MinKanal";
+    String CHANNEL_ID = "Avtale";
 
     ArrayList<Contact> listContact;
     AdapterContact contactAdapter;
@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         BroadcastReceiver myBroadcastReceiver = new MinBroadcastReciever();
-        IntentFilter filter = new IntentFilter("com.example.service.MITTSIGNAL");
-        filter.addAction("com.example.service.MITTSIGNAL");
+        IntentFilter filter = new IntentFilter("com.example.mappe2s354592.MITTSIGNAL");
+        filter.addAction("com.example.mappe2s354592.MITTSIGNAL");
         this.registerReceiver(myBroadcastReceiver, filter);
         createNotificationChannel();
 
