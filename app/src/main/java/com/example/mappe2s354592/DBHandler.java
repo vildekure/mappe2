@@ -60,8 +60,8 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_CONTACTS, null, values);
     }
 
-    public List<Contact> getAllContacts(SQLiteDatabase db) {
-        List<Contact> contactList = new ArrayList<Contact>();
+    public ArrayList<Contact> getAllContacts(SQLiteDatabase db) {
+        ArrayList<Contact> contactList = new ArrayList<Contact>();
         String selectQuery = "SELECT * FROM " + TABLE_CONTACTS;
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {

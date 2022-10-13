@@ -18,6 +18,10 @@ public class AddContact extends Activity {
     DBHandler dbHelper;
     SQLiteDatabase db;
 
+    public void addContactDB(String name, String tlf) {
+
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

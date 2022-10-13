@@ -28,10 +28,18 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    TextView listContacts;
-    ArrayList<String> contactList = new ArrayList<>();
+    ArrayList<Contact> listContact;
+    AdapterContact contactAdapter;
     DBHandler dbHelper;
     SQLiteDatabase db;
+
+    public ArrayList<Contact> getContacts() {
+        return dbHelper.getAllContacts(db);
+    }
+
+    public AdapterContact getContactAdapter() {
+        return contactAdapter;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,20 +57,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
         dbHelper = new DBHandler(MainActivity.this);
         db = dbHelper.getWritableDatabase();
-        listContacts = findViewById(R.id.list_contatacts);
-    }
-
-
-    public void listContacts(View v) {
-        String text = "";
-        List<Contact> contacts = dbHelper.getAllContacts(db);
-        for (Contact contact : contacts) {
-            text += "Navn: " + contact.getName()
-                    + "Telefon: " + contact.getTlf() + "\n";
-        }
-        listContacts.setText(text);
+        listContact = getContacts();
+        contactAdapter = new AdapterContact(this, android.R.layout.simple_list_item_1, listContact);
     }
 
 }

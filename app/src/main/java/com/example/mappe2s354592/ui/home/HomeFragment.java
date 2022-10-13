@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,14 +16,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mappe2s354592.AddContact;
 import com.example.mappe2s354592.DBHandler;
+import com.example.mappe2s354592.MainActivity;
 import com.example.mappe2s354592.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     Button addContact;
-    DBHandler dbHelper;
-    SQLiteDatabase db;
+    MainActivity mainActivity;
+    ListView listContacts;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +35,10 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         addContact = binding.addContact;
+        listContacts = binding.listContatacts;
+
+        mainActivity = (MainActivity) getActivity();
+        listContacts.setAdapter(mainActivity.getContactAdapter());
 
         addContact.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +47,6 @@ public class HomeFragment extends Fragment {
                 startActivity(addContact);
             }
         });
-
         return root;
     }
 
