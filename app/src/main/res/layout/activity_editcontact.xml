@@ -12,6 +12,7 @@
         tools:ignore="MissingConstraints">
 
         <ImageButton
+            android:id="@+id/button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
