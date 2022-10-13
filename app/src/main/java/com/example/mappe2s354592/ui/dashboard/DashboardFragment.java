@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,12 +18,14 @@ import com.example.mappe2s354592.AdapterContact;
 import com.example.mappe2s354592.AddAppointment;
 import com.example.mappe2s354592.AddContact;
 import com.example.mappe2s354592.MainActivity;
+import com.example.mappe2s354592.SetPreferencesActivity;
 import com.example.mappe2s354592.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
     Button addAppointment;
+    ImageButton settingsButton;
     MainActivity mainActivity;
     ListView listAppointments;
 
@@ -35,6 +38,7 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
 
         addAppointment = binding.addAppointment;
+        settingsButton = binding.settingButton;
 
         listAppointments = binding.listAppointments;
 
@@ -48,6 +52,13 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SetPreferencesActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
 
@@ -56,4 +67,5 @@ public class DashboardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

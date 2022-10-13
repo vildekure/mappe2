@@ -28,6 +28,7 @@
         </activity>
         <activity android:name=".AddContact" android:exported="false"/>
         <activity android:name=".AddAppointment" android:exported="false"/>
+        <activity android:name=".SetPreferencesActivity" android:exported="false"/>
     </application>
 
 </manifest>

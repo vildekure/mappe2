@@ -12,6 +12,15 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
+        <ImageButton
+            android:id="@+id/setting_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_baseline_settings_24"
+            tools:ignore="RtlHardcoded" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
