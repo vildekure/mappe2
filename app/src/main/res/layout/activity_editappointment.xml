@@ -35,6 +35,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
                 android:hint="@string/date"
                 app:startIconDrawable="@drawable/ic_baseline_calendar_month_24">
 
@@ -48,6 +50,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
                 android:layout_marginTop="10dp"
                 android:hint="@string/time"
                 app:startIconDrawable="@drawable/ic_baseline_access_time_24">
@@ -62,6 +66,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
                 android:layout_marginTop="10dp"
                 android:hint="@string/loc"
                 app:startIconDrawable="@drawable/ic_baseline_location_on_24">
@@ -76,6 +82,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
                 android:layout_marginTop="10dp"
                 android:hint="@string/mssg"
                 android:inputType="textMultiLine"

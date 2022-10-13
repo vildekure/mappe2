@@ -31,6 +31,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/blue"
+            app:hintTextColor="@color/blue"
             android:hint="@string/name"
             app:startIconDrawable="@drawable/ic_baseline_person_24">
 
@@ -45,6 +47,8 @@
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/blue"
+            app:hintTextColor="@color/blue"
             android:hint="@string/tlf"
             app:startIconDrawable="@drawable/ic_baseline_phone_24">
 
@@ -60,6 +64,7 @@
             android:layout_height="wrap_content"
             android:onClick="addContact"
             android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
             android:layout_marginTop="20dp"
             android:text="@string/add">
         </Button>

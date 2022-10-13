@@ -34,6 +34,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
                 android:hint="@string/date"
                 app:startIconDrawable="@drawable/ic_baseline_calendar_month_24">
 
@@ -48,6 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
                 android:hint="@string/time"
                 app:startIconDrawable="@drawable/ic_baseline_access_time_24">
 
@@ -61,6 +65,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
                 android:layout_marginTop="10dp"
                 android:hint="@string/loc"
                 app:startIconDrawable="@drawable/ic_baseline_location_on_24">
@@ -73,6 +79,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeColor="@color/blue"
+                app:hintTextColor="@color/blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -93,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blue"
+                android:textColor="@color/white"
                 android:layout_marginTop="20dp"
                 android:text="@string/add" />
 
