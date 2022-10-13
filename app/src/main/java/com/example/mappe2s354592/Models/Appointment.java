@@ -6,23 +6,26 @@ public class Appointment {
     public String time;
     public String location;
     public String message;
+    public long contactId;
 
     public Appointment () {
     }
 
-    public Appointment(String date, String time, String location, String message) {
+    public Appointment(String date, String time, String location, String message, long contactId) {
         this.date = date;
         this.time = time;
         this.location = location;
         this.message = message;
+        this.contactId = contactId;
     }
 
-    public Appointment(long _ID, String date, String time, String location, String message) {
+    public Appointment(long _ID, String date, String time, String location, String message, long contactId) {
         this._ID = _ID;
         this.date = date;
         this.time = time;
         this.location = location;
         this.message = message;
+        this.contactId = contactId;
     }
 
     public long get_ID() {
@@ -63,5 +66,13 @@ public class Appointment {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public long getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(long contactId) {
+        this.contactId = contactId;
     }
 }

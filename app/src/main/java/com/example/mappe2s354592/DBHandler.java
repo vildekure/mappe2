@@ -17,11 +17,15 @@ public class DBHandler extends SQLiteOpenHelper {
     static String CONTACT_KEY_ID = "_ID";
     static String CONTACT_KEY_NAME = "Name";
     static String CONTACT_PH_NO = "Tlf";
+
     static String TABLE_APPOINTMENTS = "Appointments";
     static String APPOINTMENT_KEY_ID = "_ID";
     static String APPOINTMENT_KEY_DATE = "Date";
     static String APPOINTMENT_KEY_TIME = "Time";
     static String APPOINTMENT_KEY_LOCATION = "Location";
+    static String APPOINTMENT_KEY_MESSAGE = "Message";
+    static String APPOINTMENT_KEY_CONTACT_ID = "ContactId";
+
     static int DATABASE_VERSION = 3;
     static String DATABASE_NAME = "ContactAppointments";
 
@@ -43,7 +47,11 @@ public class DBHandler extends SQLiteOpenHelper {
                 + "(" + APPOINTMENT_KEY_ID + "INTEGER PRIMARY KEY,"
                 + APPOINTMENT_KEY_DATE + " TEXT, "
                 + APPOINTMENT_KEY_TIME + " TEXT, "
-                + APPOINTMENT_KEY_LOCATION + " TEXT" + ")";
+                + APPOINTMENT_KEY_LOCATION + " TEXT,"
+                + APPOINTMENT_KEY_MESSAGE + " TEXT,"
+                + APPOINTMENT_KEY_CONTACT_ID + " TEXT,"
+                + " FOREIGN KEY (" + APPOINTMENT_KEY_CONTACT_ID +
+                ") REFERENCES " + TABLE_CONTACTS + "(" + CONTACT_KEY_ID +"));";
         db.execSQL(CREATE_TABLE_APPOINTMENTS);
     }
 
@@ -96,6 +104,8 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(APPOINTMENT_KEY_DATE, appointment.getDate());
         values.put(APPOINTMENT_KEY_TIME, appointment.getTime());
         values.put(APPOINTMENT_KEY_LOCATION, appointment.getLocation());
+        values.put(APPOINTMENT_KEY_MESSAGE, appointment.getMessage());
+        values.put(APPOINTMENT_KEY_CONTACT_ID, appointment.getContactId());
         db.insert(TABLE_APPOINTMENTS, null, values);
     }
 
