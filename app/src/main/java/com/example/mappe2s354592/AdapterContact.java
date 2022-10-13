@@ -65,13 +65,11 @@ public class AdapterContact extends ArrayAdapter<Contact> implements SpinnerAdap
                 holder = (AdapterContact.ViewHolder) vi.getTag();
             }
 
-
             Contact contact = contactList.get(position);
             holder.display_name.setText(contact.getName());
 
 
         } catch (Exception e) {
-
 
         }
         return vi;
