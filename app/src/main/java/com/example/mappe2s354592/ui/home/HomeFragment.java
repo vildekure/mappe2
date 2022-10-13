@@ -39,9 +39,10 @@ public class HomeFragment extends Fragment {
         listContacts = binding.listContatacts;
 
         mainActivity = (MainActivity) getActivity();
-        AdapterContact testAdapter = mainActivity.getContactAdapter();
+        AdapterContact testAdapter = homeViewModel.getContactAdapter().getValue();
+        listContacts.setAdapter(homeViewModel.getContactAdapter().getValue());
 
-        listContacts.setAdapter(mainActivity.getContactAdapter());
+        //listContacts.setAdapter(mainActivity.getContactAdapter());
 
         addContact.setOnClickListener(new View.OnClickListener() {
             @Override

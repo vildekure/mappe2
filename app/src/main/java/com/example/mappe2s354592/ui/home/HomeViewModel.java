@@ -4,16 +4,25 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.mappe2s354592.AdapterContact;
+
 public class HomeViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    // private final MutableLiveData<String> mText;
+    private final MutableLiveData<AdapterContact> contactAdapter;
 
     public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        contactAdapter = new MutableLiveData<>();
+
+        /* mText = new MutableLiveData<>();
+        mText.setValue("This is home fragment"); */
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void setContactAdapter(AdapterContact newAdapter) {
+        contactAdapter.setValue(newAdapter);
+    }
+
+    public LiveData<AdapterContact> getContactAdapter() {
+        return contactAdapter;
     }
 }

@@ -9,9 +9,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mappe2s354592.Models.Contact;
+import com.example.mappe2s354592.ui.home.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     AdapterContact contactAdapter;
     DBHandler dbHelper;
     SQLiteDatabase db;
+    HomeViewModel contactViewModel;
 
     public ArrayList<Contact> getContacts() {
         return dbHelper.getAllContacts(db);
@@ -58,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();
         listContact = getContacts();
         contactAdapter = new AdapterContact(this, android.R.layout.simple_list_item_1, listContact);
+        contactViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        contactViewModel .setContactAdapter(contactAdapter);
     }
 
     public AdapterContact getContactAdapter() {
