@@ -26,8 +26,12 @@
             android:padding="@dimen/activity_horizontal_margin"
             tools:ignore="MissingConstraints">
 
+            <Spinner
+                android:id="@+id/spinner_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/date_text_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,12 +39,12 @@
                 app:startIconDrawable="@drawable/ic_baseline_calendar_month_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/date_text_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/time_text_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,12 +53,12 @@
                 app:startIconDrawable="@drawable/ic_baseline_access_time_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/time_text_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/loc_text_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,12 +67,12 @@
                 app:startIconDrawable="@drawable/ic_baseline_location_on_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loc_text_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/message_tex_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,6 +84,7 @@
                 app:startIconDrawable="@drawable/ic_baseline_message_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/message_text_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
