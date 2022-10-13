@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.example.mappe2s354592.Models.Contact;
@@ -13,7 +14,7 @@ import com.example.mappe2s354592.Models.Contact;
 import java.util.ArrayList;
 
 // med hjelp fra: https://stackoverflow.com/a/15298021
-public class AdapterContact extends ArrayAdapter<Contact> {
+public class AdapterContact extends ArrayAdapter<Contact> implements SpinnerAdapter {
     private Activity activity;
     private ArrayList<Contact> contactList;
     private static LayoutInflater inflater = null;
@@ -44,6 +45,10 @@ public class AdapterContact extends ArrayAdapter<Contact> {
 
     }
 
+    public View getDropDownView (int position, View convertView, ViewGroup parent) {
+        return getView(position, convertView, parent);
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi = convertView;
         final AdapterContact.ViewHolder holder;
@@ -62,7 +67,7 @@ public class AdapterContact extends ArrayAdapter<Contact> {
 
 
             Contact contact = contactList.get(position);
-            holder.display_name.setText(contact.getName() + " " + contact.getTlf());
+            holder.display_name.setText(contact.getName());
 
 
         } catch (Exception e) {
