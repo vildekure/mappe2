@@ -93,7 +93,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void addAppointment(SQLiteDatabase db, Appointment appointment) {
         ContentValues values = new ContentValues();
-        values.put(APPOINTMENT_KEY_ID, appointment.get_ID());
         values.put(APPOINTMENT_KEY_DATE, appointment.getDate());
         values.put(APPOINTMENT_KEY_TIME, appointment.getTime());
         values.put(APPOINTMENT_KEY_LOCATION, appointment.getLocation());

@@ -5,21 +5,24 @@ public class Appointment {
     public String date;
     public String time;
     public String location;
+    public String message;
 
     public Appointment () {
     }
 
-    public Appointment(String date, String time, String location) {
+    public Appointment(String date, String time, String location, String message) {
         this.date = date;
         this.time = time;
         this.location = location;
+        this.message = message;
     }
 
-    public Appointment(long _ID, String date, String time, String location) {
+    public Appointment(long _ID, String date, String time, String location, String message) {
         this._ID = _ID;
         this.date = date;
         this.time = time;
         this.location = location;
+        this.message = message;
     }
 
     public long get_ID() {
@@ -52,5 +55,13 @@ public class Appointment {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
