@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.mappe2s354592.Models.Appointment;
 import com.example.mappe2s354592.Models.Contact;
 import com.example.mappe2s354592.ui.home.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<Contact> getContacts() {
         return dbHelper.getAllContacts(db);
     }
+    public ArrayList<Appointment> getAppointments() { return dbHelper.getAllAppointments(db); }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

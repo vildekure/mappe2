@@ -109,6 +109,28 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_APPOINTMENTS, null, values);
     }
 
+    public ArrayList<Appointment> getAllAppointments(SQLiteDatabase db) {
+        ArrayList<Appointment> appointmentsList = new ArrayList<Appointment>();
+        String selectQuery = "SELECT * FROM " + TABLE_APPOINTMENTS;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Appointment appointment = new Appointment();
+                appointment.set_ID(cursor.getLong(0));
+                appointment.setDate(cursor.getString(1));
+                appointment.setTime(cursor.getString(2));
+                appointment.setLocation(cursor.getString(3));
+                appointment.setMessage(cursor.getString(4));
+                appointment.setContactId(cursor.getLong(5));
+                appointmentsList.add(appointment);
+            }
+            while (cursor.moveToNext());
+            cursor.close();
+        }
+        return appointmentsList;
+    }
+
+
     public void deleteAppointment(SQLiteDatabase db, Long id) {
         db.delete(TABLE_APPOINTMENTS, APPOINTMENT_KEY_ID + " =? ",
                 new String[]{Long.toString(id)});
