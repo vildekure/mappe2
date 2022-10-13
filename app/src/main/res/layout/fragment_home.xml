@@ -20,7 +20,7 @@
             android:textAlignment="center" />
 
         <ListView
-            android:id="@+id/list_contatacts"
+            android:id="@+id/list_contacts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

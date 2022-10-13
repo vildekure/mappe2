@@ -36,13 +36,13 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         addContact = binding.addContact;
-        listContacts = binding.listContatacts;
+        listContacts = binding.listContacts;
 
         mainActivity = (MainActivity) getActivity();
-        AdapterContact testAdapter = homeViewModel.getContactAdapter().getValue();
-        listContacts.setAdapter(homeViewModel.getContactAdapter().getValue());
+        /* AdapterContact testAdapter = homeViewModel.getContactAdapter().getValue();
+        listContacts.setAdapter(homeViewModel.getContactAdapter().getValue()); */
 
-        //listContacts.setAdapter(mainActivity.getContactAdapter());
+        listContacts.setAdapter(mainActivity.getContactAdapter());
 
         addContact.setOnClickListener(new View.OnClickListener() {
             @Override

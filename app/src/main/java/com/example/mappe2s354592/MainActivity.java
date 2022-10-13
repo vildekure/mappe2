@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.mappe2s354592.Models.Appointment;
 import com.example.mappe2s354592.Models.Contact;
+import com.example.mappe2s354592.ui.dashboard.DashboardViewModel;
 import com.example.mappe2s354592.ui.home.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,11 +32,17 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+
     ArrayList<Contact> listContact;
     AdapterContact contactAdapter;
+    ArrayList<Appointment> listAppointment;
+    AdapterAppointment appointmentAdapter;
+
     DBHandler dbHelper;
     SQLiteDatabase db;
+
     HomeViewModel contactViewModel;
+    DashboardViewModel appointmentViewModel;
 
     public ArrayList<Contact> getContacts() {
         return dbHelper.getAllContacts(db);
@@ -61,13 +68,22 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new DBHandler(MainActivity.this);
         db = dbHelper.getWritableDatabase();
+
         listContact = getContacts();
         contactAdapter = new AdapterContact(this, android.R.layout.simple_list_item_1, listContact);
         contactViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         contactViewModel .setContactAdapter(contactAdapter);
+
+        listAppointment = getAppointments();
+        appointmentAdapter = new AdapterAppointment(this, android.R.layout.simple_list_item_1, listAppointment);
+
     }
 
     public AdapterContact getContactAdapter() {
         return contactAdapter;
+    }
+
+    public AdapterAppointment getAppointmentAdapter() {
+        return appointmentAdapter;
     }
 }

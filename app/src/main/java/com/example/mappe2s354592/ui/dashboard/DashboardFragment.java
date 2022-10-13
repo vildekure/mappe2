@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.mappe2s354592.AdapterContact;
 import com.example.mappe2s354592.AddAppointment;
 import com.example.mappe2s354592.AddContact;
 import com.example.mappe2s354592.MainActivity;
@@ -21,6 +23,8 @@ public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
     Button addAppointment;
+    MainActivity mainActivity;
+    ListView listAppointments;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,6 +35,10 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
 
         addAppointment = binding.addAppointment;
+
+        listAppointments = binding.listAppointments;
+
+        mainActivity = (MainActivity) getActivity();
 
         addAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
