@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">mappe2s354592</string>
+    <string name="app_name">Kontakt og Avtalebok</string>
+    <string name="channel_name">Min Kanal</string>
+    <string name="channel_description">Min Beskrivelse</string>
     <string name="title_contact">Kontakter</string>
     <string name="title_appoint">Avtaler</string>
     <string name="title_notifications">Notifications</string>

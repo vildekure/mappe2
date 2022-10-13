@@ -1,6 +1,10 @@
 package com.example.mappe2s354592;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +36,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    String CHANNEL_ID = "MinKanal";
 
     ArrayList<Contact> listContact;
     AdapterContact contactAdapter;
@@ -66,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        BroadcastReceiver myBroadcastReceiver = new MinBroadcastReciever();
+        IntentFilter filter = new IntentFilter("com.example.service.MITTSIGNAL");
+        filter.addAction("com.example.service.MITTSIGNAL");
+        this.registerReceiver(myBroadcastReceiver, filter);
+        createNotificationChannel();
+
         dbHelper = new DBHandler(MainActivity.this);
         db = dbHelper.getWritableDatabase();
 
@@ -85,5 +96,26 @@ public class MainActivity extends AppCompatActivity {
 
     public AdapterAppointment getAppointmentAdapter() {
         return appointmentAdapter;
+    }
+
+    /*public void startService(View v) {
+        Intent intent = new Intent(this, MinService.class);
+        this.startService(intent);
+
+        Intent intent = new Intent();
+        intent.setAction("com.example.service.MITTSIGNAL");
+        sendBroadcast(intent);
+    }*/
+
+    private void createNotificationChannel() {
+        CharSequence name = getString(R.string.channel_name);
+        String description = getString(R.string.channel_description);
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new
+                NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setDescription(description);
+        NotificationManager notificationManager =
+                getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 }
