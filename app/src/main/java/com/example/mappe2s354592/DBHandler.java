@@ -54,7 +54,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void addContact(SQLiteDatabase db, Contact contact) {
         ContentValues values = new ContentValues();
-        values.put(CONTACT_KEY_ID, contact.get_ID());
         values.put(CONTACT_KEY_NAME, contact.getName());
         values.put(CONTACT_PH_NO, contact.getTlf());
         db.insert(TABLE_CONTACTS, null, values);

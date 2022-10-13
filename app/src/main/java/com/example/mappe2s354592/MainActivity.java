@@ -37,10 +37,6 @@ public class MainActivity extends AppCompatActivity {
         return dbHelper.getAllContacts(db);
     }
 
-    public AdapterContact getContactAdapter() {
-        return contactAdapter;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,4 +60,7 @@ public class MainActivity extends AppCompatActivity {
         contactAdapter = new AdapterContact(this, android.R.layout.simple_list_item_1, listContact);
     }
 
+    public AdapterContact getContactAdapter() {
+        return contactAdapter;
+    }
 }

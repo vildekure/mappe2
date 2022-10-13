@@ -19,6 +19,8 @@ public class AddContact extends Activity {
     SQLiteDatabase db;
 
     public void addContactDB(String name, String tlf) {
+        Contact contact = new Contact(name, tlf);
+        dbHelper.addContact(db, contact);
 
     }
 
@@ -44,7 +46,9 @@ public class AddContact extends Activity {
 
      public void addContact(View v) {
         Contact contact = new Contact(innName.getText().toString(), innTlf.getText().toString());
+        System.out.println("HALLO" + innName.getText().toString());
         dbHelper.addContact(db, contact);
+
     }
 
 }

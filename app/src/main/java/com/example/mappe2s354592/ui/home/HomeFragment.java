@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.mappe2s354592.AdapterContact;
 import com.example.mappe2s354592.AddContact;
 import com.example.mappe2s354592.DBHandler;
 import com.example.mappe2s354592.MainActivity;
@@ -38,6 +39,8 @@ public class HomeFragment extends Fragment {
         listContacts = binding.listContatacts;
 
         mainActivity = (MainActivity) getActivity();
+        AdapterContact testAdapter = mainActivity.getContactAdapter();
+
         listContacts.setAdapter(mainActivity.getContactAdapter());
 
         addContact.setOnClickListener(new View.OnClickListener() {
