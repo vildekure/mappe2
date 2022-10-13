@@ -64,7 +64,7 @@ public class EditAppointment extends Activity {
         finish();
     }
 
-    public void deleteContact (View v) {
+    public void deleteAppointment (View v) {
         Appointment appointment = new Appointment();
         long appointId = appointment.get_ID();
         dbHelper.deleteAppointment(db, appointId);

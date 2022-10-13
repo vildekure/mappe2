@@ -65,6 +65,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/blue"
+                    android:onClick="editContact"
                     android:text="@string/edit">
                 </Button>
 
@@ -73,6 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/red"
+                    android:onClick="deleteContact"
                     android:text="@string/del">
                 </Button>
             </LinearLayout>
