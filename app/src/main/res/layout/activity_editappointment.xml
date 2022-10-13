@@ -80,7 +80,6 @@
                 android:hint="@string/mssg"
                 android:inputType="textMultiLine"
                 android:isScrollContainer="true"
-                android:minHeight="120dp"
                 app:startIconDrawable="@drawable/ic_baseline_message_24">
 
                 <com.google.android.material.textfield.TextInputEditText
