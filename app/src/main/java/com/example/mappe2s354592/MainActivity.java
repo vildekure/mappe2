@@ -28,7 +28,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    TextInputEditText innName, innTlf;
     TextView listContacts;
     ArrayList<String> contactList = new ArrayList<>();
     DBHandler dbHelper;
@@ -50,17 +49,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        dbHelper = new DBHandler(this);
+        dbHelper = new DBHandler(MainActivity.this);
         db = dbHelper.getWritableDatabase();
-        innName = findViewById(R.id.name_text_field);
-        innTlf =findViewById(R.id.tlf_text_field);
         listContacts = findViewById(R.id.list_contatacts);
     }
 
-    public void addContact(View v) {
-        Contact contact = new Contact(innName.getText().toString(), innTlf.getText().toString());
-        dbHelper.addContact(db, contact);
-    }
 
     public void listContacts(View v) {
         String text = "";
