@@ -14,4 +14,5 @@
     <string name="time">Klokkeslett</string>
     <string name="mssg">Melding</string>
     <string name="loc">Sted</string>
+    <string name="settings">Settings</string>
 </resources>
