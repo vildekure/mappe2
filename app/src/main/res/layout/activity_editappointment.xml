@@ -109,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
                     android:backgroundTint="@color/blue"
+                    android:textColor="@color/white"
                     android:drawableLeft="@drawable/ic_baseline_edit_24"
                     android:onClick="editAppointments"
                     android:text="@string/edit">
@@ -119,6 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/red"
+                    android:textColor="@color/white"
                     android:onClick="deleteAppointment"
                     android:drawableLeft="@drawable/ic_baseline_delete_24"
                     android:text="@string/del">
