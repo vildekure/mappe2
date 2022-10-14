@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Her skal kontakter listes"
+            android:text="@string/title_contact"
+            android:textSize="20sp"
             android:textAlignment="center" />
 
         <ListView
