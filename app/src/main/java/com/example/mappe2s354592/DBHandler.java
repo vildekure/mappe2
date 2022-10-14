@@ -117,14 +117,14 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(CONTACT_KEY_NAME, contact.getName());
         values.put(CONTACT_PH_NO, contact.getTlf());
-        int changed = db.update(TABLE_CONTACTS, values, CONTACT_KEY_ID + " =? ",
+        int changed = db.update(TABLE_CONTACTS, values, CONTACT_KEY_ID + " = ?",
                 new String[]{String.valueOf(contact.get_ID())});
         return changed;
     }
 
     // Slett Kontakt
     public void deleteContact(SQLiteDatabase db, Long id) {
-        db.delete(TABLE_CONTACTS, CONTACT_KEY_ID + " =? ",
+        db.delete(TABLE_CONTACTS, CONTACT_KEY_ID + " = ?",
                 new String[]{Long.toString(id)});
     }
 

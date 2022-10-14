@@ -16,7 +16,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class EditContact extends Activity {
     ImageButton backButton;
     TextInputEditText innName, innTlf;
-    Button delButton, editButton;
+    Long contactId;
 
     DBHandler dbHelper;
     SQLiteDatabase db;
@@ -30,30 +30,14 @@ public class EditContact extends Activity {
         db = dbHelper.getWritableDatabase();
 
         Intent getContact = getIntent();
-        Long contactId = getContact.getLongExtra("contactId", -1);
+        contactId = getContact.getLongExtra("contactId", -1);
         System.out.println("contactID:" + contactId);
 
         backButton = findViewById(R.id.button_back);
         innName = findViewById(R.id.name_text_field);
         innTlf = findViewById(R.id.tlf_text_field);
-        delButton = findViewById(R.id.button_delete);
-        editButton = findViewById(R.id.button_edit);
 
         backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        delButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -63,15 +47,20 @@ public class EditContact extends Activity {
 
     public void editContact(View v) {
         Contact contact = new Contact();
-        contact.setName(innName.getText().toString());
-        contact.setTlf(innTlf.getText().toString());
+
+        String editName = innName.getText().toString();
+        String editTlf = innTlf.getText().toString();
+
+        contact.set_ID(contactId);
+        contact.setName(editName);
+        contact.setTlf(editTlf);
+
         dbHelper.editContact(db, contact);
         finish();
     }
 
     public void deleteContact (View v) {
-        Contact contact = new Contact();
-        long contactId = contact.get_ID();
+        Contact contact = dbHelper.getOneContact(db, contactId);
         dbHelper.deleteContact(db, contactId);
         finish();
     }
