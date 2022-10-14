@@ -26,7 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String APPOINTMENT_KEY_MESSAGE = "Message";
     static String APPOINTMENT_KEY_CONTACT_ID = "ContactId";
 
-    static int DATABASE_VERSION = 3;
+    static int DATABASE_VERSION = 5;
     static String DATABASE_NAME = "ContactAppointments";
 
     public DBHandler(Context context) {
@@ -37,14 +37,14 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_CONTACTS = "CREATE TABLE "
                 + TABLE_CONTACTS
-                + "(" + CONTACT_KEY_ID + "INTEGER PRIMARY KEY,"
+                + "(" + CONTACT_KEY_ID + " INTEGER PRIMARY KEY,"
                 + CONTACT_KEY_NAME + " TEXT, "
                 + CONTACT_PH_NO + " TEXT" + ")";
         db.execSQL(CREATE_TABLE_CONTACTS);
 
         String CREATE_TABLE_APPOINTMENTS = "CREATE TABLE "
                 + TABLE_APPOINTMENTS
-                + "(" + APPOINTMENT_KEY_ID + "INTEGER PRIMARY KEY,"
+                + "(" + APPOINTMENT_KEY_ID + " INTEGER PRIMARY KEY,"
                 + APPOINTMENT_KEY_DATE + " TEXT, "
                 + APPOINTMENT_KEY_TIME + " TEXT, "
                 + APPOINTMENT_KEY_LOCATION + " TEXT,"
@@ -56,8 +56,12 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // Drop older table if exist
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_APPOINTMENTS);
+        // Create tables again
+        onCreate(db);
     }
 
     // Kontakter herfra
@@ -67,6 +71,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(CONTACT_KEY_NAME, contact.getName());
         values.put(CONTACT_PH_NO, contact.getTlf());
+
         db.insert(TABLE_CONTACTS, null, values);
     }
 
@@ -81,6 +86,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 contact.set_ID(cursor.getLong(0));
                 contact.setName(cursor.getString(1));
                 contact.setTlf(cursor.getString(2));
+                System.out.println(contact.get_ID() + " " + contact.getName());
                 contactList.add(contact);
             }
             while (cursor.moveToNext());

@@ -13,11 +13,13 @@ import com.example.mappe2s354592.Models.Appointment;
 import com.example.mappe2s354592.Models.Contact;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+
 public class AddAppointment extends Activity {
     ImageButton backButton;
     TextInputEditText innDate, innTime, innLoc, innMssg;
     Spinner spinnerContacts;
-    AdapterContact adapter;
+    AdapterContact contactAdapter;
     DBHandler dbHelper;
     SQLiteDatabase db;
 
@@ -35,7 +37,10 @@ public class AddAppointment extends Activity {
         innLoc = findViewById(R.id.loc_text_field);
         innMssg = findViewById(R.id.message_text_field);
         spinnerContacts = findViewById(R.id.spinner_contacts);
-        spinnerContacts.setAdapter(adapter);
+
+        ArrayList<Contact> listContact = dbHelper.getAllContacts(db);
+        contactAdapter = new AdapterContact(this, android.R.layout.simple_list_item_1, listContact);
+        spinnerContacts.setAdapter(contactAdapter);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

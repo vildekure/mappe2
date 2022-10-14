@@ -75,6 +75,7 @@ public class EditContact extends Activity {
         dbHelper.deleteContact(db, contactId);
         finish();
     }
+
     /*
      dbHandler.DeleteFriendById(db, id);
         Friend deletedFriend = friendViewModel.getSelectedFriend().getValue();
