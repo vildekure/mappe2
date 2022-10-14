@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import java.util.Calendar;
 
-public class SettPeriodiskService extends Service {
+public class MinPeriodiskService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -24,7 +24,7 @@ public class SettPeriodiskService extends Service {
         cal.set(Calendar.MINUTE, 30);
         cal.set(Calendar.SECOND, 0);
 
-        Intent i = new Intent(this, MinService.class);
+        Intent i = new Intent(this, MinSendService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
 
         AlarmManager alarm =(AlarmManager) getSystemService(Context.ALARM_SERVICE);

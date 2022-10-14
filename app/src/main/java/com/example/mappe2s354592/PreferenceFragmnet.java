@@ -2,8 +2,8 @@ package com.example.mappe2s354592;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 
-import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 public class PreferenceFragmnet extends PreferenceFragmentCompat

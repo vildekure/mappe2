@@ -17,7 +17,7 @@ public class MinBroadcastReciever extends BroadcastReceiver {
         /*Intent i = new Intent(context, MinService.class);
         context.startService(i);*/
 
-        Intent i = new Intent(context, SettPeriodiskService.class);
+        Intent i = new Intent(context, MinPeriodiskService.class);
         context.startService(i);
     }
 }
