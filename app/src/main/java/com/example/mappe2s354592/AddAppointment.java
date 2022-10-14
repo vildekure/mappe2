@@ -60,10 +60,6 @@ public class AddAppointment extends Activity {
         Appointment appointment = new Appointment(date, time, location, message, contactId);
         System.out.println("Dette er en avtale for: " + contactId);
         dbHelper.addAppointment(db, appointment);
-
-        /*Appointment appointment = new Appointment(innTime.getText().toString(), innLoc.getText().toString(), innMssg.getText().toString());
-        System.out.println("HALLO" + innDate.getText().toString());
-        dbHelper.addAppointment(db, appointment);*/
-
+        finish();
     }
 }

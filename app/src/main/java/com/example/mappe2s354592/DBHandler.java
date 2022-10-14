@@ -155,6 +155,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 appointment.setLocation(cursor.getString(3));
                 appointment.setMessage(cursor.getString(4));
                 appointment.setContactId(cursor.getLong(5));
+                System.out.println(appointment.get_ID() + " " + appointment.getLocation());
                 appointmentsList.add(appointment);
             }
             while (cursor.moveToNext());

@@ -1,6 +1,7 @@
 package com.example.mappe2s354592;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,9 @@ public class EditAppointment extends Activity {
 
         dbHelper = new DBHandler(EditAppointment.this);
         db = dbHelper.getWritableDatabase();
+
+        Intent getAppointment = getIntent();
+        Long appointmentId = getAppointment.getLongExtra("appointmentId", -1);
 
         backButton = findViewById(R.id.button_back);
         buttonEdit = findViewById(R.id.button_edit);

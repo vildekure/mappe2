@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -18,7 +19,9 @@ import com.example.mappe2s354592.AdapterAppointment;
 import com.example.mappe2s354592.AdapterContact;
 import com.example.mappe2s354592.AddAppointment;
 import com.example.mappe2s354592.AddContact;
+import com.example.mappe2s354592.EditAppointment;
 import com.example.mappe2s354592.MainActivity;
+import com.example.mappe2s354592.Models.Appointment;
 import com.example.mappe2s354592.SetPreferencesActivity;
 import com.example.mappe2s354592.databinding.FragmentDashboardBinding;
 
@@ -59,6 +62,16 @@ public class DashboardFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), SetPreferencesActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        listAppointments.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Appointment appointment = adapterAppointment.getItem(position);
+                Intent toEditApp = new Intent(getActivity(), EditAppointment.class);
+                toEditApp.putExtra("appointmentId", appointment._ID);
+                startActivity(toEditApp);
             }
         });
 

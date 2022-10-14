@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         addContact = binding.addContact;
+
         listContacts = binding.listContacts;
 
         mainActivity = (MainActivity) getActivity();
