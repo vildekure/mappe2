@@ -8,4 +8,9 @@
         app:summary="Standardmelding"
         app:title="Melding"
         app:defaultValue="Husk avtale i dag" />
+    <EditTextPreference
+        app:key="time"
+        app:title="Klokkeslett"
+        app:summary="Velg hvilken time alarmen skal gå"
+        app:defaultValue="09" />
 </PreferenceScreen>
