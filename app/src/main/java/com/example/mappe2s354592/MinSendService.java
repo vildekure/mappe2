@@ -33,7 +33,7 @@ public class MinSendService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         ArrayList<Appointment> allAppointments = dbHelper.getAllAppointments(db);
-        // Contact contact = dbHelper.getOneContact(db, id);
+
 
         Calendar dato = Calendar.getInstance();
 
@@ -50,6 +50,8 @@ public class MinSendService extends Service {
 
         for (Appointment appointment : allAppointments) {
             String appointmentDate = appointment.getDate();
+            Contact contact = dbHelper.getOneContact(db, appointment.getContactId());
+            String phoneNr = contact.getTlf();
 
             if (todayDate.equals(appointmentDate)) {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -57,10 +59,10 @@ public class MinSendService extends Service {
                 String appMessage = appointment.getMessage();
 
                 if (appMessage.isEmpty()) {
-
+                    sendMessage(phoneNr, defaultMessage);
                 }
                 else {
-
+                    sendMessage(phoneNr, appMessage);
                 }
 
                 NotificationManager notificationManager = (NotificationManager)
@@ -82,17 +84,9 @@ public class MinSendService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    public void sendMessage () {
+    public void sendMessage (String tlf, String mssg) {
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("phoneNo", null, "sms message", null, null);
-
-        /*
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.putExtra("sms_body", "default content");
-        sendIntent.setType("vnd.android-dir/mms-sms");
-        startActivity(sendIntent);
-        */
-
+        smsManager.sendTextMessage(tlf, null, mssg, null, null);
 
     }
 }
