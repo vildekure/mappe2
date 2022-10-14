@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.mappe2s354592.AdapterAppointment;
 import com.example.mappe2s354592.AdapterContact;
 import com.example.mappe2s354592.AddAppointment;
 import com.example.mappe2s354592.AddContact;
@@ -28,6 +29,8 @@ public class DashboardFragment extends Fragment {
     ImageButton settingsButton;
     MainActivity mainActivity;
     ListView listAppointments;
+
+    AdapterAppointment adapterAppointment;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +63,14 @@ public class DashboardFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapterAppointment = mainActivity.getAppointmentAdapter();
+
+        listAppointments.setAdapter(adapterAppointment);
     }
 
     @Override
