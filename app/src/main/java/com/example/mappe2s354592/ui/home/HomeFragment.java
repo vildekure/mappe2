@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +18,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.mappe2s354592.AdapterContact;
 import com.example.mappe2s354592.AddContact;
 import com.example.mappe2s354592.DBHandler;
+import com.example.mappe2s354592.EditContact;
 import com.example.mappe2s354592.MainActivity;
+import com.example.mappe2s354592.Models.Contact;
 import com.example.mappe2s354592.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -26,6 +29,8 @@ public class HomeFragment extends Fragment {
     Button addContact;
     MainActivity mainActivity;
     ListView listContacts;
+
+    AdapterContact contactAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,8 +47,6 @@ public class HomeFragment extends Fragment {
         /* AdapterContact testAdapter = homeViewModel.getContactAdapter().getValue();
         listContacts.setAdapter(homeViewModel.getContactAdapter().getValue()); */
 
-        listContacts.setAdapter(mainActivity.getContactAdapter());
-
         addContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +54,25 @@ public class HomeFragment extends Fragment {
                 startActivity(addContact);
             }
         });
+        listContacts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Contact contact = contactAdapter.getItem(position);
+                Intent intent = new Intent(getActivity(), EditContact.class);
+                intent.putExtra("contactId", contact._ID);
+                startActivity(intent);
+            }
+        });
+
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        contactAdapter = mainActivity.getContactAdapter();
+
+        listContacts.setAdapter(contactAdapter);
     }
 
     @Override

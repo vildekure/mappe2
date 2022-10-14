@@ -1,6 +1,7 @@
 package com.example.mappe2s354592;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,10 @@ public class EditContact extends Activity {
 
         dbHelper = new DBHandler(EditContact.this);
         db = dbHelper.getWritableDatabase();
+
+        Intent getContact = getIntent();
+        Long contactId = getContact.getLongExtra("contactId", -1);
+        System.out.println("contactID:" + contactId);
 
         backButton = findViewById(R.id.button_back);
         innName = findViewById(R.id.name_text_field);

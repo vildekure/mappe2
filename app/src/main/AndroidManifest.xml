@@ -29,6 +29,7 @@
         <activity android:name=".AddContact" android:exported="false"/>
         <activity android:name=".AddAppointment" android:exported="false"/>
         <activity android:name=".SetPreferencesActivity" android:exported="false"/>
+        <activity android:name=".EditContact" android:exported="false" />
 
         <service android:name=".MinSendService"/>
         <service android:name=".MinPeriodiskService"/>

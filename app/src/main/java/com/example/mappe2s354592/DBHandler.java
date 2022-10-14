@@ -62,6 +62,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Kontakter herfra
 
+    // Legg til Kontakt
     public void addContact(SQLiteDatabase db, Contact contact) {
         ContentValues values = new ContentValues();
         values.put(CONTACT_KEY_NAME, contact.getName());
@@ -69,6 +70,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_CONTACTS, null, values);
     }
 
+    // List alle Kontakter
     public ArrayList<Contact> getAllContacts(SQLiteDatabase db) {
         ArrayList<Contact> contactList = new ArrayList<Contact>();
         String selectQuery = "SELECT * FROM " + TABLE_CONTACTS;
@@ -87,6 +89,24 @@ public class DBHandler extends SQLiteOpenHelper {
         return contactList;
     }
 
+    // Hent en kontakt
+    public Contact getOneContact(SQLiteDatabase db, long contactId) {
+        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{"*"},
+                CONTACT_KEY_ID + "=?", new String[]{String.valueOf(contactId)},
+                null, null, null, null);
+
+        if (cursor.moveToNext()) {
+            Contact contact = new Contact();
+            contact.set_ID(cursor.getLong(0));
+            contact.setName(cursor.getString(1));
+            contact.setTlf(cursor.getString(2));
+            return contact;
+        }
+        cursor.close();
+        return null;
+    }
+
+    // Rediger kontakt
     public int editContact(SQLiteDatabase db, Contact contact) {
         ContentValues values = new ContentValues();
         values.put(CONTACT_KEY_NAME, contact.getName());
@@ -96,6 +116,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return changed;
     }
 
+    // Slett Kontakt
     public void deleteContact(SQLiteDatabase db, Long id) {
         db.delete(TABLE_CONTACTS, CONTACT_KEY_ID + " =? ",
                 new String[]{Long.toString(id)});
@@ -103,6 +124,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Avtaler herfra
 
+    // Legg til en avtale
     public void addAppointment(SQLiteDatabase db, Appointment appointment) {
         ContentValues values = new ContentValues();
         values.put(APPOINTMENT_KEY_DATE, appointment.getDate());
@@ -113,6 +135,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_APPOINTMENTS, null, values);
     }
 
+    // Hent alle avtaler
     public ArrayList<Appointment> getAllAppointments(SQLiteDatabase db) {
         ArrayList<Appointment> appointmentsList = new ArrayList<Appointment>();
         String selectQuery = "SELECT * FROM " + TABLE_APPOINTMENTS;
@@ -134,6 +157,9 @@ public class DBHandler extends SQLiteOpenHelper {
         return appointmentsList;
     }
 
+    // Hent en avtale
+
+    // Rediger avtale
     public int editAppointment (SQLiteDatabase db, Appointment appointment){
         ContentValues values = new ContentValues();
         values.put(APPOINTMENT_KEY_DATE, appointment.getDate());
@@ -146,6 +172,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return endret;
     }
 
+    // Slett Avtale
     public void deleteAppointment(SQLiteDatabase db, Long id) {
         db.delete(TABLE_APPOINTMENTS, APPOINTMENT_KEY_ID + " =? ",
                 new String[]{Long.toString(id)});
