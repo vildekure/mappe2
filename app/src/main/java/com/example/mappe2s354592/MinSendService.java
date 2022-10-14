@@ -32,35 +32,47 @@ public class MinSendService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         ArrayList<Appointment> allAppointments = dbHelper.getAllAppointments(db);
 
-        Calendar todaysDate = Calendar.getInstance();
-        int year = todaysDate.get(Calendar.YEAR);
-        int month = todaysDate.get(Calendar.MONTH) + 1;
-        int day = todaysDate.get(Calendar.DAY_OF_MONTH);
-        // System.out.println(day + "." + month + "." + year);
+        Calendar dato = Calendar.getInstance();
+
+        int year = dato.get(Calendar.YEAR);
+        String yearString = Integer.toString(year);
+
+        int month = dato.get(Calendar.MONTH) + 1;
+        String monthString = Integer.toString(month);
+
+        int day = dato.get(Calendar.DAY_OF_MONTH);
+        String dayString = Integer.toString(day);
+
+        String todayDate = dayString + "." + monthString + "." + yearString;
 
         for (Appointment appointment : allAppointments) {
-            String date = appointment.getDate();
-            int dateInt = Integer.parseInt(date);
+            String appointmentDate = appointment.getDate();
+
+            if (todayDate.equals(appointmentDate)) {
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                String defaultMessage = sharedPreferences.getString("melding", "");
+                String appMessage = appointment.getMessage();
+
+                if (appMessage.isEmpty()) {
+
+                }
+
+                NotificationManager notificationManager = (NotificationManager)
+                        getSystemService(NOTIFICATION_SERVICE);
+
+                Intent i = new Intent(this, MainActivity.class);
+                PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
+
+                Notification notifikasjon = new NotificationCompat.Builder(this,"Avtale")
+                        .setContentTitle("Reminder")
+                        .setContentText("Husk avtalen din i dag")
+                        .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setContentIntent(pIntent).build();
+                notifikasjon.flags |= Notification.FLAG_AUTO_CANCEL;
+                notificationManager.notify(88, notifikasjon);
+            }
         }
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.getString("melding", "");
-
-        NotificationManager notificationManager = (NotificationManager)
-                getSystemService(NOTIFICATION_SERVICE);
-
-        Intent i = new Intent(this, MainActivity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, 0, i, 0);
-
-        Notification notifikasjon = new NotificationCompat.Builder(this,"Avtale")
-                .setContentTitle("Reminder")
-                .setContentText("Husk avtalen din i dag")
-                .setSmallIcon(R.drawable.ic_baseline_notifications_24)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pIntent).build();
-        notifikasjon.flags |= Notification.FLAG_AUTO_CANCEL;
-        notificationManager.notify(88, notifikasjon);
-
         return super.onStartCommand(intent, flags, startId);
     }
 }

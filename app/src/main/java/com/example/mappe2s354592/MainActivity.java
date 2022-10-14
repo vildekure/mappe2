@@ -96,13 +96,14 @@ public class MainActivity extends AppCompatActivity {
         appointmentAdapter = new AdapterAppointment(this, android.R.layout.simple_list_item_1, listAppointment);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
-            @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        SharedPreferences.OnSharedPreferenceChangeListener listener;
+        listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
                 stoppService();
                 startService();
-            }
-        });
+                }
+            };
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener);
     }
 
     public AdapterContact getContactAdapter() {
