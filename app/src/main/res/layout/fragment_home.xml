@@ -35,6 +35,15 @@
             android:drawableLeft="@drawable/ic_baseline_add_24"
             android:text="@string/add">
         </Button>
+        <ImageButton
+            android:id="@+id/setting_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_gravity="left"
+            android:src="@drawable/ic_baseline_settings_24"
+            tools:ignore="RtlHardcoded"
+            android:contentDescription="@string/settings" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

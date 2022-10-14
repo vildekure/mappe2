@@ -1,5 +1,6 @@
 package com.example.mappe2s354592;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.example.mappe2s354592.ui.home.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -83,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
         filter.addAction("com.example.service.MITTSIGNAL");
         this.registerReceiver(myBroadcastReceiver, filter);
         createNotificationChannel();
+
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.SEND_SMS},
+                PackageManager.PERMISSION_GRANTED);
 
         dbHelper = new DBHandler(MainActivity.this);
         db = dbHelper.getWritableDatabase();

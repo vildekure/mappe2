@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import com.example.mappe2s354592.DBHandler;
 import com.example.mappe2s354592.EditContact;
 import com.example.mappe2s354592.MainActivity;
 import com.example.mappe2s354592.Models.Contact;
+import com.example.mappe2s354592.SetPreferencesActivity;
 import com.example.mappe2s354592.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
@@ -29,6 +31,7 @@ public class HomeFragment extends Fragment {
     Button addContact;
     MainActivity mainActivity;
     ListView listContacts;
+    ImageButton settingsButton;
 
     AdapterContact contactAdapter;
 
@@ -43,6 +46,7 @@ public class HomeFragment extends Fragment {
         addContact = binding.addContact;
 
         listContacts = binding.listContacts;
+        settingsButton = binding.settingButton;
 
         mainActivity = (MainActivity) getActivity();
 
@@ -53,6 +57,14 @@ public class HomeFragment extends Fragment {
                 startActivity(addContact);
             }
         });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SetPreferencesActivity.class);
+                startActivity(intent);
+            }
+        });
+
         listContacts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
