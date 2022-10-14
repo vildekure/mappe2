@@ -9,12 +9,14 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.example.mappe2s354592.Models.Appointment;
+import com.example.mappe2s354592.Models.Contact;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,6 +33,7 @@ public class MinSendService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         ArrayList<Appointment> allAppointments = dbHelper.getAllAppointments(db);
+        // Contact contact = dbHelper.getOneContact(db, id);
 
         Calendar dato = Calendar.getInstance();
 
@@ -56,6 +59,9 @@ public class MinSendService extends Service {
                 if (appMessage.isEmpty()) {
 
                 }
+                else {
+
+                }
 
                 NotificationManager notificationManager = (NotificationManager)
                         getSystemService(NOTIFICATION_SERVICE);
@@ -74,6 +80,20 @@ public class MinSendService extends Service {
             }
         }
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    public void sendMessage () {
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("phoneNo", null, "sms message", null, null);
+
+        /*
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.putExtra("sms_body", "default content");
+        sendIntent.setType("vnd.android-dir/mms-sms");
+        startActivity(sendIntent);
+        */
+
+
     }
 }
 
