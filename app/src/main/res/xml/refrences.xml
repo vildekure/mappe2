@@ -2,9 +2,10 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
     <SwitchPreferenceCompat
         app:key="Notifikasjoner"
-        app:title="Tillat notifikasjoner" />
+        app:title="Tillat SMS notifikasjon" />
     <EditTextPreference
         app:key="melding"
         app:summary="Standardmelding"
-        app:title="Melding" />
+        app:title="Melding"
+        app:defaultValue="Husk avtale i dag" />
 </PreferenceScreen>

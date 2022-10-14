@@ -1,10 +1,14 @@
 package com.example.mappe2s354592;
 
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +28,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.preference.PreferenceManager;
 
 import com.example.mappe2s354592.databinding.ActivityMainBinding;
 import com.google.android.material.textfield.TextInputEditText;
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.refrences, false);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -72,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         BroadcastReceiver myBroadcastReceiver = new MinBroadcastReciever();
-        IntentFilter filter = new IntentFilter("com.example.mappe2s354592.MITTSIGNAL");
-        filter.addAction("com.example.mappe2s354592.MITTSIGNAL");
+        IntentFilter filter = new IntentFilter("com.example.service.MITTSIGNAL");
+        filter.addAction("com.example.service.MITTSIGNAL");
         this.registerReceiver(myBroadcastReceiver, filter);
         createNotificationChannel();
 
@@ -88,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
         listAppointment = getAppointments();
         appointmentAdapter = new AdapterAppointment(this, android.R.layout.simple_list_item_1, listAppointment);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+                stoppService();
+                startService();
+            }
+        });
     }
 
     public AdapterContact getContactAdapter() {
@@ -98,14 +112,21 @@ public class MainActivity extends AppCompatActivity {
         return appointmentAdapter;
     }
 
-    /*public void startService(View v) {
-        Intent intent = new Intent(this, MinService.class);
-        this.startService(intent);
-
+    public void startService() {
         Intent intent = new Intent();
         intent.setAction("com.example.service.MITTSIGNAL");
         sendBroadcast(intent);
-    }*/
+    }
+
+    public void stoppService () {
+        Intent i = new Intent(MainActivity.this, MinSendService.class);
+        PendingIntent pintent = PendingIntent.getService(MainActivity.this, 0, i, 0);
+        AlarmManager alarm =
+                (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if(alarm != null) {
+            alarm.cancel(pintent);
+        }
+    }
 
     private void createNotificationChannel() {
         CharSequence name = getString(R.string.channel_name);

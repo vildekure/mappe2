@@ -28,7 +28,7 @@ public class MinPeriodiskService extends Service {
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
 
         AlarmManager alarm =(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pintent);
+        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24 , pintent);
 
         return super.onStartCommand(intent, flags, startId);}
 }
