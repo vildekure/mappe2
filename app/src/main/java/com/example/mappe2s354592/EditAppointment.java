@@ -39,6 +39,8 @@ public class EditAppointment extends Activity {
         Intent getAppointment = getIntent();
         appointmentId = getAppointment.getLongExtra("appointmentId", -1);
 
+        Appointment appointment = dbHelper.getOneAppointment(db, appointmentId);
+
         backButton = findViewById(R.id.button_back);
         buttonEdit = findViewById(R.id.button_edit);
         buttonDelete = findViewById(R.id.button_delete);
@@ -47,6 +49,11 @@ public class EditAppointment extends Activity {
         innTime = findViewById(R.id.time_text_field);
         innLoc = findViewById(R.id.loc_text_field);
         innMssg = findViewById(R.id.message_text_field);
+
+        innDate.setText(appointment.getDate());
+        innTime.setText(appointment.getTime());
+        innLoc.setText(appointment.getLocation());
+        innMssg.setText(appointment.getMessage());
 
         spinnerContacts = findViewById(R.id.spinner_contacts);
         ArrayList<Contact> listContacts = dbHelper.getAllContacts(db);
@@ -84,9 +91,7 @@ public class EditAppointment extends Activity {
     }
 
     public void deleteAppointment (View v) {
-        Appointment appointment = new Appointment();
-        long appointId = appointment.get_ID();
-        dbHelper.deleteAppointment(db, appointId);
+        dbHelper.deleteAppointment(db, appointmentId);
         finish();
     }
 }

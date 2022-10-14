@@ -29,13 +29,18 @@ public class EditContact extends Activity {
         dbHelper = new DBHandler(EditContact.this);
         db = dbHelper.getWritableDatabase();
 
-        Intent getContact = getIntent();
-        contactId = getContact.getLongExtra("contactId", -1);
+        Intent triggerIntent = getIntent();
+        contactId = triggerIntent.getLongExtra("contactId", -1);
         System.out.println("contactID:" + contactId);
+
+        Contact contact = dbHelper.getOneContact(db, contactId);
 
         backButton = findViewById(R.id.button_back);
         innName = findViewById(R.id.name_text_field);
         innTlf = findViewById(R.id.tlf_text_field);
+
+        innName.setText(contact.getName());
+        innTlf.setText(contact.getTlf());
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +65,6 @@ public class EditContact extends Activity {
     }
 
     public void deleteContact (View v) {
-        Contact contact = dbHelper.getOneContact(db, contactId);
         dbHelper.deleteContact(db, contactId);
         finish();
     }

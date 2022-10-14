@@ -165,6 +165,23 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // Hent en avtale
+    public Appointment getOneAppointment(SQLiteDatabase db, long appointmentId) {
+        Cursor cursor = db.query(TABLE_APPOINTMENTS, new String[]{"*"},
+        CONTACT_KEY_ID + "=?", new String[]{String.valueOf(appointmentId)},
+                null, null, null, null);
+        if (cursor.moveToNext()) {
+            Appointment appointment = new Appointment();
+            appointment.set_ID(cursor.getLong(0));
+            appointment.setDate(cursor.getString(1));
+            appointment.setTime(cursor.getString(2));
+            appointment.setLocation(cursor.getString(3));
+            appointment.setMessage(cursor.getString(4));
+            appointment.setContactId(cursor.getLong(5));
+            return appointment;
+        }
+        cursor.close();
+        return null;
+    }
 
     // Rediger avtale
     public int editAppointment (SQLiteDatabase db, Appointment appointment){
