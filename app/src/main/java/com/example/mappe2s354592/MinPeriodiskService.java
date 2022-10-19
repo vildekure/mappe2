@@ -26,13 +26,13 @@ public class MinPeriodiskService extends Service {
         int timeInt = Integer.parseInt(time);
 
         java.util.Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, timeInt);
+        //cal.set(Calendar.HOUR_OF_DAY, timeInt);
 
         Intent i = new Intent(this, MinSendService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
 
         AlarmManager alarm =(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24 , pintent);
+        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 10 * 1000 , pintent);
 
         return super.onStartCommand(intent, flags, startId);}
 }
