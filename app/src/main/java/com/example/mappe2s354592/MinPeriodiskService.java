@@ -28,20 +28,20 @@ public class MinPeriodiskService extends Service {
         String time =  sharedPreferences.getString("time", "");
         int timeInt = Integer.parseInt(time);
 
-        int hour = 9;
-        int min = 10;
+        //int hour = 9;
+        //int min = 0;
 
-        System.out.println("Tid: " + hour + ":" + min);
+        //System.out.println("Tid: " + hour + ":" + min);
 
         java.util.Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, hour);
-        cal.set(Calendar.MINUTE, min);
+        cal.set(Calendar.HOUR_OF_DAY, timeInt);
+        cal.set(Calendar.MINUTE, 28);
 
         Intent i = new Intent(this, MinSendService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
 
         AlarmManager alarm =(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 10 * 1000 , pintent);
+        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 24 * 60 * 60 * 1000 , pintent);
 
         return super.onStartCommand(intent, flags, startId);}
 }
