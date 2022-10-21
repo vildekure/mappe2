@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Default values
         PreferenceManager.setDefaultValues(this, R.xml.refrences, false);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -81,12 +81,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        // Lager en broadcast reciever
         BroadcastReceiver myBroadcastReceiver = new MinBroadcastReciever();
         IntentFilter filter = new IntentFilter("com.example.service.MITTSIGNAL");
         filter.addAction("com.example.service.MITTSIGNAL");
         this.registerReceiver(myBroadcastReceiver, filter);
         createNotificationChannel();
 
+        // Start service
+        startService();
+
+        // Sender ut spm om man kan sende sms i oppstart
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.SEND_SMS},
                 PackageManager.PERMISSION_GRANTED);

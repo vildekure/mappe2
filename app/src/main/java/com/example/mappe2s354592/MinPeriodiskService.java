@@ -22,11 +22,20 @@ public class MinPeriodiskService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        System.out.println("HALLO fra MinPeriodiskService");
+
         String time =  sharedPreferences.getString("time", "");
         int timeInt = Integer.parseInt(time);
 
+        int hour = 9;
+        int min = 10;
+
+        System.out.println("Tid: " + hour + ":" + min);
+
         java.util.Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, timeInt);
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+        cal.set(Calendar.MINUTE, min);
 
         Intent i = new Intent(this, MinSendService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);

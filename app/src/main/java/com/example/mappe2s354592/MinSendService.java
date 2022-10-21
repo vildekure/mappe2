@@ -32,8 +32,12 @@ public class MinSendService extends Service {
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        dbHelper = new DBHandler(this);
+        db = dbHelper.getWritableDatabase();
+
         ArrayList<Appointment> allAppointments = dbHelper.getAllAppointments(db);
 
+        System.out.println("Her er man i MinSendService!!");
 
         Calendar dato = Calendar.getInstance();
 
@@ -47,6 +51,8 @@ public class MinSendService extends Service {
         String dayString = Integer.toString(day);
 
         String todayDate = dayString + "." + monthString + "." + yearString;
+
+        System.out.println("Dato: " + todayDate);
 
         for (Appointment appointment : allAppointments) {
             String appointmentDate = appointment.getDate();

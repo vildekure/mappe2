@@ -13,5 +13,7 @@ public class MinBroadcastReciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context, MinPeriodiskService.class);
         context.startService(i);
+
+        System.out.println("HALLO fra MinBroadcastReciever");
     }
 }
