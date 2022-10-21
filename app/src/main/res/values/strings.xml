@@ -10,7 +10,7 @@
     <string name="edit">Endre</string>
     <string name="name">Navn</string>
     <string name="tlf">Telefonnummer</string>
-    <string name="date">Dato</string>
+    <string name="date">DD.MM.YYYY</string>
     <string name="time">Klokkeslett</string>
     <string name="mssg">Melding</string>
     <string name="loc">Sted</string>
