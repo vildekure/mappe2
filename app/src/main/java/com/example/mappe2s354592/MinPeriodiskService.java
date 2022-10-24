@@ -35,7 +35,7 @@ public class MinPeriodiskService extends Service {
 
         java.util.Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, timeInt);
-        cal.set(Calendar.MINUTE, 28);
+        cal.set(Calendar.MINUTE, 0);
 
         Intent i = new Intent(this, MinSendService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
