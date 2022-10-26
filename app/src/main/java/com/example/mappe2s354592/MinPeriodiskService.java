@@ -23,13 +23,10 @@ public class MinPeriodiskService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        System.out.println("HALLO fra MinPeriodiskService");
+        // System.out.println("HALLO fra MinPeriodiskService");
 
         String time =  sharedPreferences.getString("time", "");
         int timeInt = Integer.parseInt(time);
-
-        //int hour = 9;
-        //int min = 0;
 
         //System.out.println("Tid: " + hour + ":" + min);
 

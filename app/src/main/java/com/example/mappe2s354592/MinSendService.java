@@ -37,7 +37,7 @@ public class MinSendService extends Service {
 
         ArrayList<Appointment> allAppointments = dbHelper.getAllAppointments(db);
 
-        System.out.println("Her er man i MinSendService!!");
+        // System.out.println("Her er man i MinSendService!!");
 
         Calendar dato = Calendar.getInstance();
 
@@ -52,7 +52,7 @@ public class MinSendService extends Service {
 
         String todayDate = dayString + "." + monthString + "." + yearString;
 
-        System.out.println("Dato: " + todayDate);
+        // System.out.println("Dato: " + todayDate);
 
         for (Appointment appointment : allAppointments) {
             String appointmentDate = appointment.getDate();

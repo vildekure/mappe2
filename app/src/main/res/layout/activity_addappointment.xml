@@ -36,8 +36,8 @@
                 android:layout_height="wrap_content"
                 app:boxStrokeColor="@color/blue"
                 app:hintTextColor="@color/blue"
-                android:hint="Dato"
-                app:placeholderText="@string/date"
+                android:hint="@string/date"
+                app:placeholderText="@string/dateHelp"
                 app:startIconDrawable="@drawable/ic_baseline_calendar_month_24">
 
                 <com.google.android.material.textfield.TextInputEditText
