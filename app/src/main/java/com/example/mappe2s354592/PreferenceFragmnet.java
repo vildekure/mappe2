@@ -11,7 +11,7 @@ public class PreferenceFragmnet extends PreferenceFragmentCompat
         Preference.OnPreferenceChangeListener{
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.refrences);
+        addPreferencesFromResource(R.xml.preferences);
     }
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {

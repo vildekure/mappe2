@@ -13,13 +13,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.mappe2s354592.Models.Appointment;
 import com.example.mappe2s354592.Models.Contact;
+import com.example.mappe2s354592.databinding.ActivityMainBinding;
 import com.example.mappe2s354592.ui.dashboard.DashboardViewModel;
 import com.example.mappe2s354592.ui.home.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,14 +30,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
-import com.example.mappe2s354592.databinding.ActivityMainBinding;
-import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Default values
-        PreferenceManager.setDefaultValues(this, R.xml.refrences, false);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
